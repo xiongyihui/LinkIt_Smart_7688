@@ -13,12 +13,15 @@ madplay /path/to/music.mp3
 ```
 
 ### AirPlay
-There are several applications to get LinkIt Smart 7688 to support AirPlay, such as shairport, shairport-sync and shairplay. But all these applications in its repository have very poor performance, some extra tweaks are required.
+There are several AirPlay applications on openwrt system, such as shairport, shairport-sync and shairplay. But all these applications in LinkIt Smart 7688's repository have very poor performance. We need to patch the applications to improve their performance.
 
-We patch the application shairport to make it work and make [a new revision shairport ipk](shairport_2014-10-28-2_ramips_24kec.ipk).
+1 Shairport
 
-```
-opkg install libdbus
-opkg install shairport_2014-10-28-2_ramips_24kec.ipk --force-checksum --force-overwrite
-shairport
-```
+  We patch shairport with [002-use_mmap.patch](shairport_patch/002-use_mmap.patch), use mmap to improve the performance and package [a new revision shairport ipk](shairport_2014-10-28-2_ramips_24kec.ipk).
+
+  ```
+  opkg install libdbus
+  opkg install shairport_2014-10-28-2_ramips_24kec.ipk --force-checksum --force-overwrite
+  shairport
+  ```
+
