@@ -26,6 +26,14 @@ There are several AirPlay applications on openwrt system, such as shairport, sha
   shairport
   ```
   
+2 Shairport-sync
+
+  Use [shairport-sync-mini ipk](shairport-sync-mini_2.6-2_ramips_24kec.ipk)
+  
+  ```
+  opkg install shairport-sync-mini_2.6-2_ramips_24kec.ipk --force-overwrite
+  ```
+  
 ### UPnP/DLNA
 We can use [GMediaRender](https://github.com/hzeller/gmrender-resurrect) as a UPnP/DLNA server to stream audio. The GMediaRender is not in 7688's repository, we use [package feed](gmediarender) to compile an ipk file or directly use [the pre-compiled ipk](gmediarender_2013-12-04-e2eb7852eebea95c69c79c43a1e4d5f52409930f_ramips_24kec.ipk) to get GMediaRender work.
 
@@ -36,7 +44,7 @@ opkg install libupnp gstreamer1 gst1-plugins-base gst1-mod-mad gst1-mod-audiopar
 
 There is a bug in mpegaudioparse of the package gst1-mod-audioparsers, which causes that the GMediaRender can't play mp3 files.
 
-The result is that the command `gst-launch-1.0 filesrc location=/path/to/music.mp3 ! map ! alsasink` works but the command `gst-launch-1.0 playbin uri=file:///path/to/music.mp3` doesn't.
+The result is that the command `gst-launch-1.0 filesrc location=/path/to/music.mp3 ! mad ! alsasink` works but the command `gst-launch-1.0 playbin uri=file:///path/to/music.mp3` doesn't.
 
 
 
